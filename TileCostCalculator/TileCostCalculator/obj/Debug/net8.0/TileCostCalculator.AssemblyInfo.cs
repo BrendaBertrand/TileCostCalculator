@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TileCostCalculator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+16bc7a365ec3b21913c7cf398f740823fa1f0234")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cdd8e412e5d6de2a72c44dbcda9f561cd0b89e41")]
 [assembly: System.Reflection.AssemblyProductAttribute("TileCostCalculator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TileCostCalculator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
