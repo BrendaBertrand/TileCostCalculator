@@ -5,7 +5,7 @@ class Program
     const int HOURLY_RATE = 86;
     const int HOURLY_AREA = 2;
     const int NUMBER_OF_DECIMALS = 2;
-    static readonly string[] SHAPE_LIST = ["Rectangular", "Round" ];
+    static readonly string[] SHAPE_LIST = ["Rectangular", "Round"];
 
     static double GetPositiveDouble(string question)
     {
@@ -21,47 +21,38 @@ class Program
 
     static void Main(string[] args)
     {
-       
-        Dictionary<string, string> shapes = new Dictionary<string, string>()
-        {
-            { SHAPE_LIST[0], "1" },
-            { SHAPE_LIST[1], "2" }
-        };
-
         Console.WriteLine("Hello and Welcome to our Tile Cost Calculator\n");
 
         double flooringUnitCost = 0;
         flooringUnitCost = GetPositiveDouble("What is the cost of 1 square meter of flooring ? ");
 
 
-        string selectedShape = "";
+        int indexOfSelectedShape = -1;
         do
         {
             Console.WriteLine($"\nWhat is the shape of you room ?");
-            foreach (var shape in shapes)
+            for (int i = 0; i < SHAPE_LIST.Length; i++)
             {
-                Console.WriteLine($"Enter {shape.Value} for {shape.Key}");
+                Console.WriteLine($"Enter {i+1} for {SHAPE_LIST[i]}");
             }
-
-            selectedShape = Console.ReadLine();
-        } while (!shapes.ContainsValue(selectedShape));
-
+            Int32.TryParse(Console.ReadLine(),out indexOfSelectedShape);
+        } while (indexOfSelectedShape<=0 || indexOfSelectedShape>SHAPE_LIST.Length);
+        
         double[] dimensions = new double[2];
         double area = 0.0;
 
-        if (selectedShape == shapes[SHAPE_LIST[0]])
+        switch (indexOfSelectedShape)
         {
-            dimensions[0] = GetPositiveDouble("\nWhat is the length of the room in meters ? ");
-            dimensions[1] = GetPositiveDouble("\nWhat is the width of the room in meters ? ");
-
-            area = dimensions[0] * dimensions[1];
-        }
-
-        if (selectedShape == SHAPE_LIST[1])
-        {
-            dimensions[0] = GetPositiveDouble("\nWhat is the radius of the room in meters ? ");
-
-            area = dimensions[0] * dimensions[0] * Math.PI;
+            case 1: 
+                dimensions[0] = GetPositiveDouble("\nWhat is the length of the room in meters ? ");
+                dimensions[1] = GetPositiveDouble("\nWhat is the width of the room in meters ? ");
+                area = dimensions[0] * dimensions[1];
+                break;
+            
+            case 2:
+                dimensions[0] = GetPositiveDouble("\nWhat is the radius of the room in meters ? ");
+                area = dimensions[0] * dimensions[0] * Math.PI;
+                break;
         }
 
         double workedHours = 0.0;
