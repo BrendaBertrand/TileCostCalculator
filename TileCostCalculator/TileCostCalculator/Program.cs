@@ -5,7 +5,7 @@ class Program
     const int HOURLY_RATE = 86;
     const int HOURLY_AREA = 2;
     const int NUMBER_OF_DECIMALS = 2;
-    static readonly string[] SHAPE_LIST = ["Rectangular", "Round"];
+    static readonly string[] SHAPE_LIST = ["Rectangular", "Round", "Triangle"];
 
     static double GetPositiveDouble(string question)
     {
@@ -54,6 +54,12 @@ class Program
         {
             dimensions[0] = GetPositiveDouble("\nWhat is the radius of the room in meters ? ");
             area = dimensions[0] * dimensions[0] * Math.PI;
+            
+        }else if (selectedShape == SHAPE_LIST[2])
+        {
+            dimensions[0] = GetPositiveDouble("\nWhat is the base of the room in meters ? ");
+            dimensions[1] = GetPositiveDouble("\nWhat is the height of the room in meters ? ");
+            area = dimensions[0] * dimensions[1] / 2;
         }
 
         double workedHours = 0.0;
