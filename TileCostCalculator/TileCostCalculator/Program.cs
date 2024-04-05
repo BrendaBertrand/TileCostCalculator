@@ -28,31 +28,32 @@ class Program
 
 
         int indexOfSelectedShape = -1;
+        bool isParseSuccessful = false;
         do
         {
             Console.WriteLine($"\nWhat is the shape of you room ?");
             for (int i = 0; i < SHAPE_LIST.Length; i++)
             {
-                Console.WriteLine($"Enter {i+1} for {SHAPE_LIST[i]}");
+                Console.WriteLine($"Enter {i} for {SHAPE_LIST[i]}");
             }
-            Int32.TryParse(Console.ReadLine(),out indexOfSelectedShape);
-        } while (indexOfSelectedShape<=0 || indexOfSelectedShape>SHAPE_LIST.Length);
-        
+
+            isParseSuccessful = Int32.TryParse(Console.ReadLine(), out indexOfSelectedShape);
+        } while (indexOfSelectedShape < 0 || indexOfSelectedShape >= SHAPE_LIST.Length || !isParseSuccessful);
+
+        string selectedShape = SHAPE_LIST[indexOfSelectedShape];
         double[] dimensions = new double[2];
         double area = 0.0;
 
-        switch (indexOfSelectedShape)
+        if (selectedShape == SHAPE_LIST[0])
         {
-            case 1: 
-                dimensions[0] = GetPositiveDouble("\nWhat is the length of the room in meters ? ");
-                dimensions[1] = GetPositiveDouble("\nWhat is the width of the room in meters ? ");
-                area = dimensions[0] * dimensions[1];
-                break;
-            
-            case 2:
-                dimensions[0] = GetPositiveDouble("\nWhat is the radius of the room in meters ? ");
-                area = dimensions[0] * dimensions[0] * Math.PI;
-                break;
+            dimensions[0] = GetPositiveDouble("\nWhat is the length of the room in meters ? ");
+            dimensions[1] = GetPositiveDouble("\nWhat is the width of the room in meters ? ");
+            area = dimensions[0] * dimensions[1];
+        }
+        else if (selectedShape == SHAPE_LIST[1])
+        {
+            dimensions[0] = GetPositiveDouble("\nWhat is the radius of the room in meters ? ");
+            area = dimensions[0] * dimensions[0] * Math.PI;
         }
 
         double workedHours = 0.0;
